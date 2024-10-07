@@ -8,53 +8,56 @@
 </head>
 <body>
     <div class="container">
-        <!-- Add the image at the top of the form -->
         <img src="{{ url_for('static', filename='images/RoboProp.png') }}" alt="Robot Logo" class="logo">
         
         <h2>RoboProp Advisor</h2>
         <h4>Select Property Details</h4>
+
+        <!-- Form for predicting rental price -->
         <form action="/submit" method="post">
             <div class="form-group">
-            <label for="propertyType">Property Type:</label>
-            <select name="propertyType" id="propertyType">
-                <option value="HDB">HDB</option>
-                <option value="Condo">Condo</option>
-                <option value="Landed">Landed</option>
-            </select>
+                <label for="propertyType">Property Type:</label>
+                <select name="propertyType" id="propertyType">
+                    <option value="HDB">HDB</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Landed">Landed</option>
+                </select>
             </div>
 
             <div class="form-group">
-            <label for="location">Location:</label>
-            <select name="location" id="location">
-                <option value="Bedok">Bedok</option>
-                <option value="Tampines">Tampines</option>
-                <option value="Jurong">Jurong</option>
-            </select>
+                <label for="location">Location:</label>
+                <select name="location" id="location">
+                    <option value="Bedok">Bedok</option>
+                    <option value="Tampines">Tampines</option>
+                    <option value="Jurong">Jurong</option>
+                </select>
             </div>
 
             <div class="form-group">
-            <label for="rooms">Number of Rooms:</label>
-            <select name="rooms" id="rooms">
-                <option value="1R">1 Room</option>
-                <option value="2R">2 Rooms</option>
-                <option value="3R">3 Rooms</option>
-                <option value="4R">4 Rooms</option>
-            </select>
+                <label for="rooms">Number of Rooms:</label>
+                <select name="rooms" id="rooms">
+                    <option value="1R">1 Room</option>
+                    <option value="2R">2 Rooms</option>
+                    <option value="3R">3 Rooms</option>
+                    <option value="4R">4 Rooms</option>
+                </select>
             </div>
-                <button type="submit">Predict Rental Price</button>
+            <button type="submit" class="button">Predict Rental Price</button>
         </form>
 
+        <!-- Form for searching properties -->
         <form action="/search_properties" method="post">
-            <button class="button" type="submit">Search Properties</button>
-         </form>
-
-         <form action="/check_scam_result" method="post">
-            <input type="text" name="url" placeholder="Enter URL here: " /></p>
-            <button class="button" type="submit" >Check for Scam</button>
+            <button type="submit" class="button">Search Properties</button>
         </form>
-            
+
+        <!-- Form for uploading an advertisement image -->
+        <form action="/check_scam_result" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="image">Upload Property Advertisement Image:</label>
+                <input type="file" name="image" accept="image/*" required />
+            </div>
+            <button type="submit" class="button">Check Image for Scam</button>
+        </form>
     </div>
 </body>
 </html>
-
-
