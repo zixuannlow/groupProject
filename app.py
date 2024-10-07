@@ -6,9 +6,9 @@ import io
 
 app = Flask(__name__)
 
-# Configure the generative AI model with the API key stored in an environment variable
-genai.configure(api_key="AIzaSyD-strnzokyR5z6u74xUUg8HOCyixfmQL0") 
-model = genai.GenerativeModel("gemini-1.5-flash-latest")
+model = genai.GenerativeModel("gemini-1.5-flash")
+api = os.getenv("GEMINI")
+genai.configure(api_key=api) 
 
 @app.route('/')
 def home():
