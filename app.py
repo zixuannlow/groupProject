@@ -17,19 +17,37 @@ def home():
 @app.route('/submit', methods=['POST'])
 def submit():
     # Get the selected values from the form
-    property_type = request.form.get('propertyType')
-    location = request.form.get('location')
+    hdb = 0
+    condo = 0
+    landed = 0
+
+    property_type = request.form.get('propertyType') 
+    if property_type == "HDB": 
+        hdb= 1
+    elif property_type == "Condo": 
+        condo = 1
+    elif property_type == "Landed": 
+        landed = 1
+     
+    #to be amended
+    region = request.form.get('location')
+     
+    encodeRegion = 0
+    if region == "North": 
+        encodeRegion= 1
+    elif property_type == "West": 
+        encodeRegion = 2
+    elif property_type == "East": 
+        encodeRegion = 3
+    elif property_type == "South": 
+        encodeRegion = 4
+      
     rooms = request.form.get('rooms')
-
-    # Calculate the estimated rent based on selections
-    base_price = 1000
-    property_type_factor = {'HDB': 1.0, 'Condo': 1.5, 'Landed': 2.0}.get(property_type, 1.0)
-    location_factor = {'Bedok': 1.1, 'Tampines': 1.3, 'Jurong': 1.5}.get(location, 1.0)
-    rooms_factor = {'1R': 0.8, '2R': 1.0, '3R': 1.2, '4R': 1.5}.get(rooms, 1.0)
-
-    estimated_rent = base_price * property_type_factor * location_factor * rooms_factor
-
-    return render_template('predict_rent_result.html', rent=estimated_rent)
+    numOfRooms = int(rooms[:1])
+  
+    rent = 1628.84 + 55.96*(encodeRegion) + 1251.01*(numOfRooms) - 56.69*(condo) - 84.34*(hdb) + 141.03*(landed)  
+    resultArr = [region, rooms ,property_type,rent]
+    return render_template('predict_rent_result.html', r=resultArr)
 
 @app.route("/search_properties", methods=["POST"])
 def search_properties():
