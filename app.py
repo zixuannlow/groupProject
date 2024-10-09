@@ -46,7 +46,8 @@ def submit():
     numOfRooms = int(rooms[:1])
   
     rent = 1628.84 + 55.96*(encodeRegion) + 1251.01*(numOfRooms) - 56.69*(condo) - 84.34*(hdb) + 141.03*(landed)  
-    resultArr = [region, rooms ,property_type,rent]
+    rentString = "%.2f" % rent
+    resultArr = [region, rooms ,property_type,rentString]
     return render_template('predict_rent_result.html', r=resultArr)
 
 @app.route("/search_properties", methods=["POST"])
