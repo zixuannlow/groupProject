@@ -70,7 +70,7 @@ def check_scam_result():
             image = Image.open(file.stream)
 
             # Generate a prompt for the model analysis
-            prompt = "Analyze this image of a property advertisement and rate its legitimacy on a scale from 1 to 10."
+            prompt = "Analyze if this advertisement is about renting/selling of property. If yes, rate its legitimacy on a scale from 1 to 10."
             
             # Convert the image to the required format for the generative model
             # Use the `Image` object directly instead of BytesIO
